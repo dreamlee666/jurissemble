@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "id": "open-practice/case-law-research",
+  "title": "类案检索与裁判分歧识别",
+  "summary": "以可复核的检索范围、纳入标准和事实因素矩阵组织类案，并显式报告裁判分歧与研究缺口。",
+  "module_type": "RESEARCH_ANALYSIS",
+  "status": "EXPERIMENTAL",
+  "version": "0.1.0",
+  "maintainers": ["org:open-practice"],
+  "tags": ["case-law", "research", "issue-analysis"],
+  "purpose": {
+    "use_when": ["法律问题、最低必要事实因素、法域和时间范围能够被界定"],
+    "not_for": ["把一次检索直接当作具体事项的胜诉预测或最终法律意见"],
+    "completion": ["检索式、范围、纳入排除、案例矩阵、分歧、缺口和来源均可复核"]
+  },
+  "scope": {
+    "jurisdictions": ["CN"],
+    "as_of": "2026-08-31",
+    "practice_areas": ["litigation", "legal-research"],
+    "lifecycle_stages": ["issue-framing", "research"],
+    "limitations": ["数据库覆盖和裁判公开范围会限制结论；搜索不到不等于不存在"],
+    "intended_users": ["lawyer", "legal-researcher"]
+  },
+  "interface": {
+    "inputs": [
+      {"name": "legal_issue", "semantic_type": "legal.issue", "data_type": "string", "required": true, "sensitivity": "INTERNAL", "description": "可以命名并限定的法律研究问题"},
+      {"name": "fact_factors", "semantic_type": "fact.factor-set", "data_type": "array", "required": true, "sensitivity": "CONFIDENTIAL", "description": "完成检索所需的最低必要、已去身份化事实因素"},
+      {"name": "jurisdiction", "semantic_type": "jurisdiction.identifier", "data_type": "string", "required": true, "sensitivity": "PUBLIC", "description": "法院、地区或其他适用法域"}
+    ],
+    "outputs": [
+      {"name": "case_matrix", "semantic_type": "research.case-matrix", "data_type": "artifact", "sensitivity": "INTERNAL", "description": "含来源、事实因素、裁判观点和差异的案例矩阵", "completion": "每个纳入案例均有来源、纳入理由和因素编码"},
+      {"name": "research_gaps", "semantic_type": "research.gap-set", "data_type": "array", "sensitivity": "INTERNAL", "description": "覆盖限制、冲突和待进一步确认事项", "completion": "所有已知覆盖限制和未解决分歧均显式记录"}
+    ],
+    "preconditions": ["问题、法域、时间范围和最低必要事实因素已由责任律师确认"],
+    "stop_conditions": ["问题无法界定、关键事实因素为空或必要数据库无访问权限"],
+    "escalation_conditions": ["裁判口径冲突、事实差异高度敏感或需要作出事项策略判断"]
+  },
+  "method": {
+    "overview": "先固定问题和范围，再构造检索式、筛选案例、编码因素、比较分歧并报告缺口。",
+    "steps": [
+      {"id": "frame-issue", "action": "确认问题、事实因素和检索边界", "responsible_role": "responsible-lawyer", "human_decision": true},
+      {"id": "search", "action": "执行并保存可复核检索式和结果范围", "responsible_role": "researcher", "human_decision": true},
+      {"id": "compare", "action": "编码案例因素并识别支持、反例和分歧", "responsible_role": "researcher", "human_decision": true, "produces": ["case_matrix", "research_gaps"]}
+    ],
+    "decision_points": ["是否扩大检索范围", "分歧是否需要责任律师评价"]
+  },
+  "dependencies": {
+    "modules": [{"id": "open-practice/source-currentness", "version": "0.1.0", "purpose": "核验引用法源和裁判来源状态", "optional": false}],
+    "sources": [
+      {"id": "court-public-source", "title": "公开裁判来源占位符", "uri": "https://example.invalid/case-source", "source_type": "CASE", "jurisdiction": "CN", "accessed_at": "2026-08-31", "rights_basis": "link-only-research-placeholder"}
+    ],
+    "tools": [{"name": "case-database", "access_requirement": "authorized-access", "purpose": "检索公开或获授权的裁判资料"}]
+  },
+  "trust": {
+    "risk_level": "HIGH",
+    "required_review": ["RESPONSIBLE_LAWYER", "JURISDICTION_SPECIALIST", "SOURCE_REVIEWER"],
+    "validations": [
+      {"level": "L1_SCHEMA", "status": "PASS", "evidence": "local-ajv-validation"},
+      {"level": "L5_COUNTEREXAMPLE", "status": "PASS", "evidence": "unframed-issue-stops"}
+    ],
+    "review_claims": []
+  },
+  "provenance": {
+    "contributors": [{"actor": "org:open-practice", "role": "AUTHOR", "contribution": "research prototype"}],
+    "derived_from": [],
+    "machine_assistance": [{"tool": "Codex", "use": "schema drafting and desk test", "human_reviewed": false}]
+  },
+  "rights": {
+    "content_license": "CC-BY-4.0-proposed",
+    "source_specific_rights": ["Case databases and court materials retain source-specific terms"],
+    "confidentiality_level": "PUBLIC_METHOD_ONLY",
+    "contribution_attestation": "research-prototype-no-client-material"
+  },
+  "state_contract": {
+    "reads": ["legal_issue", "fact_factors", "jurisdiction", "source_snapshot"],
+    "writes": ["case_matrix", "research_gaps"],
+    "invariants": ["search-scope-preserved", "client-identity-excluded-from-public-output"],
+    "retention": "project-policy",
+    "responsibility_handoff": {"from": "researcher", "to": "responsible-lawyer", "acceptance": "EXPLICIT"}
+  }
+}

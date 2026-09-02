@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.1.0",
+  "id": "open-practice/source-currentness",
+  "title": "法源现行性与沿革核验",
+  "summary": "核验指定法源在目标日期的状态、版本沿革和权威出处，并显式报告无法解决的来源冲突。",
+  "module_type": "SOURCE_CHECK",
+  "status": "EXPERIMENTAL",
+  "version": "0.1.0",
+  "maintainers": ["org:open-practice"],
+  "tags": ["source-check", "legal-research", "currentness"],
+  "purpose": {
+    "use_when": ["已经能够唯一识别待核验的法源，需要确认目标日期的效力和版本"],
+    "not_for": ["不能唯一识别法源或需要直接作出溯及力和实体适用结论"],
+    "completion": ["至少一个权威来源已核验，沿革和有效期已记录，冲突与缺口已显式报告"]
+  },
+  "scope": {
+    "jurisdictions": ["CN"],
+    "as_of": "2026-08-31",
+    "practice_areas": ["legal-research"],
+    "lifecycle_stages": ["research", "quality-control"],
+    "limitations": ["只核验来源状态，不判断该规则对具体事项的最终适用"],
+    "intended_users": ["lawyer", "legal-researcher"]
+  },
+  "interface": {
+    "inputs": [
+      {
+        "name": "source_identifier",
+        "semantic_type": "source.identifier",
+        "data_type": "string",
+        "required": true,
+        "sensitivity": "PUBLIC",
+        "description": "能够唯一定位法源的名称、文号、条文或权威 URI"
+      },
+      {
+        "name": "target_date",
+        "semantic_type": "time.target-date",
+        "data_type": "date",
+        "required": true,
+        "sensitivity": "PUBLIC",
+        "description": "需要判断法源状态的目标日期"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "source_status",
+        "semantic_type": "source.status-record",
+        "data_type": "object",
+        "sensitivity": "PUBLIC",
+        "description": "法源状态、有效期间、沿革、权威 URI 和未解决冲突",
+        "completion": "包含目标日期结论、证据链接、沿革和未解决缺口"
+      }
+    ],
+    "preconditions": ["调用者已提供可唯一识别的法源和目标日期"],
+    "stop_conditions": ["法源无法唯一定位或没有可访问的权威来源"],
+    "escalation_conditions": ["权威来源相互冲突、有效期存在争议或涉及溯及力解释"]
+  },
+  "method": {
+    "overview": "从官方来源定位法源，构建修订链，核对目标日期并记录证据和冲突。",
+    "steps": [
+      {"id": "identify", "action": "在权威来源中唯一定位法源", "responsible_role": "researcher", "human_decision": true},
+      {"id": "trace-history", "action": "记录发布、修订、废止和生效时间", "responsible_role": "researcher", "human_decision": true},
+      {"id": "report", "action": "形成状态记录并显式列出缺口", "responsible_role": "researcher", "human_decision": true, "produces": ["source_status"]}
+    ],
+    "decision_points": ["来源冲突是否需要责任律师解释"]
+  },
+  "dependencies": {
+    "modules": [],
+    "sources": [
+      {
+        "id": "npc-law-database",
+        "title": "国家法律法规数据库",
+        "uri": "https://flk.npc.gov.cn/",
+        "source_type": "LEGISLATION",
+        "jurisdiction": "CN",
+        "accessed_at": "2026-08-31",
+        "rights_basis": "official-source-link"
+      }
+    ],
+    "tools": []
+  },
+  "trust": {
+    "risk_level": "MEDIUM",
+    "required_review": ["RESPONSIBLE_LAWYER", "SOURCE_REVIEWER"],
+    "validations": [
+      {"level": "L1_SCHEMA", "status": "PASS", "evidence": "local-ajv-validation"},
+      {"level": "L5_COUNTEREXAMPLE", "status": "PASS", "evidence": "missing-source-identifier-stops"}
+    ],
+    "review_claims": []
+  },
+  "provenance": {
+    "contributors": [
+      {"actor": "org:open-practice", "role": "AUTHOR", "contribution": "research prototype"}
+    ],
+    "derived_from": [],
+    "machine_assistance": [
+      {"tool": "Codex", "use": "schema drafting and desk test", "human_reviewed": false}
+    ]
+  },
+  "rights": {
+    "content_license": "CC-BY-4.0-proposed",
+    "source_specific_rights": ["Official sources are linked and retain their own legal status"],
+    "confidentiality_level": "PUBLIC_METHOD_ONLY",
+    "contribution_attestation": "research-prototype-no-client-material"
+  },
+  "state_contract": {
+    "reads": ["source_identifier", "target_date"],
+    "writes": ["source_status"],
+    "invariants": ["authoritative-source-evidence-preserved", "unresolved-conflicts-not-hidden"],
+    "retention": "release-policy",
+    "responsibility_handoff": {"from": "researcher", "to": "responsible-lawyer", "acceptance": "EXPLICIT"}
+  }
+}

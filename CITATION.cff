@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Jurissemble · 律构集"
+message: "If you use the Legal Module Research Schema or toolkit, cite this repository and the exact release."
+type: software
+version: 0.1.0
+date-released: 2026-09-03
+authors:
+  - family-names: "Jurissemble Contributors"
+license: Apache-2.0
+repository-code: "https://github.com/dreamlee666/jurissemble"

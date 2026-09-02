@@ -1,0 +1,33 @@
+name: Schema proposal
+description: Propose a testable Legal Module field or compatibility change.
+title: "[Schema] "
+labels: ["schema", "proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Repeated problem
+      description: What cross-sample problem cannot the current Schema express?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Define the field, semantics, validation and migration impact.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Synthetic or public examples
+      description: Provide at least one positive and one boundary/counterexample.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Rights and confidentiality
+      options:
+        - label: Examples are synthetic, public-domain or authorized for public release.
+          required: true

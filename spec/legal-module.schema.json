@@ -1,0 +1,438 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/legal-module/0.1.0/schema.json",
+  "title": "Legal Module Research Schema V0.1",
+  "description": "Provisional research schema for versioned, reviewable and composable legal work capabilities. Schema validity is not legal correctness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "summary",
+    "module_type",
+    "status",
+    "version",
+    "maintainers",
+    "purpose",
+    "scope",
+    "interface",
+    "method",
+    "dependencies",
+    "trust",
+    "provenance",
+    "rights"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "module_type": {
+      "enum": [
+        "SOURCE_CHECK",
+        "RULE_DECISION",
+        "RESEARCH_ANALYSIS",
+        "EVIDENCE",
+        "DOCUMENT_CLAUSE",
+        "PROCESS",
+        "ARGUMENT_PATTERN",
+        "COMPOSITION"
+      ]
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "EXPERIMENTAL",
+        "REVIEWED",
+        "MAINTAINED",
+        "DEPRECATED",
+        "ARCHIVED",
+        "WITHDRAWN"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "maintainers": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/actorRef"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
+      }
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_when", "not_for", "completion"],
+      "properties": {
+        "use_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        },
+        "not_for": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        },
+        "completion": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jurisdictions", "as_of", "practice_areas", "lifecycle_stages", "limitations"],
+      "properties": {
+        "jurisdictions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 2}
+        },
+        "as_of": {"type": "string", "format": "date"},
+        "valid_until": {"type": "string", "format": "date"},
+        "practice_areas": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 2}
+        },
+        "lifecycle_stages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 2}
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        },
+        "intended_users": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 2}
+        }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "outputs", "preconditions", "stop_conditions", "escalation_conditions"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/inputPort"}
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/outputPort"}
+        },
+        "preconditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        },
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        },
+        "escalation_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 5}
+        }
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overview", "steps"],
+      "properties": {
+        "overview": {"type": "string", "minLength": 10},
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "action", "responsible_role"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+              "action": {"type": "string", "minLength": 5},
+              "responsible_role": {"type": "string", "minLength": 2},
+              "human_decision": {"type": "boolean"},
+              "produces": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1}
+              }
+            }
+          }
+        },
+        "decision_points": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 5}
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modules", "sources", "tools"],
+      "properties": {
+        "modules": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/moduleDependency"}
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/sourceReference"}
+        },
+        "tools": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/toolDependency"}
+        }
+      }
+    },
+    "trust": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_level", "required_review", "validations", "review_claims"],
+      "properties": {
+        "risk_level": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+        "required_review": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["RESPONSIBLE_LAWYER", "JURISDICTION_SPECIALIST", "SOURCE_REVIEWER", "PRIVACY_REVIEWER", "RIGHTS_REVIEWER"]
+          }
+        },
+        "validations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/validationRecord"}
+        },
+        "review_claims": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/reviewClaim"}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contributors", "derived_from", "machine_assistance"],
+      "properties": {
+        "contributors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/contribution"}
+        },
+        "derived_from": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*@[0-9]+\\.[0-9]+\\.[0-9]+.*$"}
+        },
+        "machine_assistance": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/machineAssistance"}
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content_license", "source_specific_rights", "confidentiality_level", "contribution_attestation"],
+      "properties": {
+        "content_license": {"type": "string", "minLength": 3},
+        "source_specific_rights": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 3}
+        },
+        "confidentiality_level": {
+          "const": "PUBLIC_METHOD_ONLY"
+        },
+        "contribution_attestation": {"type": "string", "minLength": 3}
+      }
+    },
+    "state_contract": {
+      "$ref": "#/$defs/stateContract"
+    }
+  },
+  "$defs": {
+    "actorRef": {
+      "type": "string",
+      "pattern": "^(user|org):[a-z0-9][a-z0-9._-]*$"
+    },
+    "sensitivity": {
+      "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "HIGHLY_CONFIDENTIAL"]
+    },
+    "inputPort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "semantic_type", "data_type", "required", "sensitivity", "description"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "semantic_type": {"type": "string", "pattern": "^[a-z][a-z0-9.-]*$"},
+        "data_type": {"enum": ["string", "number", "boolean", "date", "object", "array", "artifact"]},
+        "required": {"type": "boolean"},
+        "sensitivity": {"$ref": "#/$defs/sensitivity"},
+        "description": {"type": "string", "minLength": 5},
+        "example": {}
+      }
+    },
+    "outputPort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "semantic_type", "data_type", "sensitivity", "description", "completion"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "semantic_type": {"type": "string", "pattern": "^[a-z][a-z0-9.-]*$"},
+        "data_type": {"enum": ["string", "number", "boolean", "date", "object", "array", "artifact"]},
+        "sensitivity": {"$ref": "#/$defs/sensitivity"},
+        "description": {"type": "string", "minLength": 5},
+        "completion": {"type": "string", "minLength": 5}
+      }
+    },
+    "moduleDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "purpose"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*$"},
+        "version": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 5},
+        "optional": {"type": "boolean"}
+      }
+    },
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "uri", "source_type", "jurisdiction", "accessed_at", "rights_basis"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+        "title": {"type": "string", "minLength": 3},
+        "uri": {"type": "string", "format": "uri"},
+        "source_type": {"enum": ["LEGISLATION", "CASE", "REGULATION", "GUIDANCE", "ARTICLE", "DATASET", "INTERNAL", "OTHER"]},
+        "jurisdiction": {"type": "string", "minLength": 2},
+        "effective_from": {"type": "string", "format": "date"},
+        "effective_to": {"type": "string", "format": "date"},
+        "accessed_at": {"type": "string", "format": "date"},
+        "anchor": {"type": "string"},
+        "rights_basis": {"type": "string", "minLength": 3}
+      }
+    },
+    "toolDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "access_requirement", "purpose"],
+      "properties": {
+        "name": {"type": "string", "minLength": 2},
+        "access_requirement": {"type": "string", "minLength": 2},
+        "purpose": {"type": "string", "minLength": 5}
+      }
+    },
+    "validationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "status", "evidence"],
+      "properties": {
+        "level": {"enum": ["L0_PARSE", "L1_SCHEMA", "L2_REFERENCE", "L3_COMPATIBILITY", "L4_EXAMPLE", "L5_COUNTEREXAMPLE", "L6_PROFESSIONAL", "L7_FIELD"]},
+        "status": {"enum": ["NOT_RUN", "PASS", "FAIL", "PARTIAL", "STALE"]},
+        "evidence": {"type": "string", "minLength": 3},
+        "checked_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "reviewClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer", "jurisdiction", "dimensions", "decision", "created_at"],
+      "properties": {
+        "reviewer": {"$ref": "#/$defs/actorRef"},
+        "jurisdiction": {"type": "string", "minLength": 2},
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["SCHEMA", "SOURCE", "TEMPORAL_SCOPE", "INTERFACE", "METHOD", "LEGAL_ANALYSIS", "PRIVACY", "RIGHTS", "COMPATIBILITY"]}
+        },
+        "decision": {"enum": ["APPROVE", "REQUEST_CHANGES", "REJECT"]},
+        "created_at": {"type": "string", "format": "date"},
+        "valid_until": {"type": "string", "format": "date"},
+        "evidence": {"type": "string"}
+      }
+    },
+    "contribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "role", "contribution"],
+      "properties": {
+        "actor": {"$ref": "#/$defs/actorRef"},
+        "role": {"enum": ["AUTHOR", "EDITOR", "RESEARCHER", "REVIEWER", "MAINTAINER"]},
+        "contribution": {"type": "string", "minLength": 3}
+      }
+    },
+    "machineAssistance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool", "use", "human_reviewed"],
+      "properties": {
+        "tool": {"type": "string", "minLength": 2},
+        "use": {"type": "string", "minLength": 3},
+        "human_reviewed": {"type": "boolean"}
+      }
+    },
+    "stateContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reads", "writes", "invariants", "retention", "responsibility_handoff"],
+      "properties": {
+        "reads": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "writes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "invariants": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 3}},
+        "retention": {"type": "string", "minLength": 3},
+        "responsibility_handoff": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "to", "acceptance"],
+          "properties": {
+            "from": {"type": "string", "minLength": 2},
+            "to": {"type": "string", "minLength": 2},
+            "acceptance": {"enum": ["EXPLICIT", "SYSTEM_RECORDED"]}
+          }
+        }
+      }
+    }
+  }
+}

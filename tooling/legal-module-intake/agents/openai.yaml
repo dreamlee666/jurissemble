@@ -1,0 +1,7 @@
+interface:
+  display_name: "法律模块本地整理"
+  short_description: "将案件材料在本地整理为私有案件包及可公开的模块草稿"
+  brand_color: "#0B4A3B"
+  default_prompt: "Use $legal-module-intake to inventory this matter locally and prepare reviewable Legal Module candidates without publishing anything."
+policy:
+  allow_implicit_invocation: true
