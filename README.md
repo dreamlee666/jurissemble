@@ -6,6 +6,18 @@ Jurissemble 是一个面向法律专业人员的开放协作产品原型：把�
 
 当前版本为 **M0 Research Prototype**。通过结构校验不代表法律正确、同行已经审查、适用于具体事项或可以由 AI 自动执行。
 
+## 给评估者的五分钟路径
+
+如果你从研究生/博士项目、法律科技、知识工程、产品或开源协作角度评估本项目，建议按以下顺序：
+
+1. 打开[项目档案](https://jurissemble.jiaozhu7.chatgpt.site/dossier)，查看研究问题、FLC+D架构、系统贡献和已知限制；
+2. 检查[`case-law-research`模块](https://jurissemble.jiaozhu7.chatgpt.site/modules/open-practice/case-law-research)的用途、接口、来源、复核和版本边界；
+3. 阅读[`spec/`](spec/)并运行`pnpm spec:validate`，核验三个不同模块化程度的合成样本；
+4. 运行`pnpm test`，复现网站构建与公开真实性边界测试；
+5. 查看[`research-lab`](https://jurissemble.jiaozhu7.chatgpt.site/research-lab)，区分已经实现、部分验证和仍待研究的主张。
+
+项目的核心工作问题是：**法律工作能否在不丢失事实来源、法域时点、专业判断、异议和责任边界的前提下，被版本化、复用、组合与共同维护？** 当前回答是一套可运行、可检查、可否证的研究原型，而不是已经证实的行业标准。
+
 ## 核心对象
 
 - `Repository`：共同维护模块、来源、测试、Proposal 和 Release 的协作容器；
@@ -78,3 +90,7 @@ pnpm spec:validate
 - 对外品牌仍应在正式商业使用前完成商标和域名专项核验。
 
 欢迎通过 Issue 讨论结构问题，通过 Pull Request 改进代码、Schema、文档和虚构示例。
+
+## 署名与AI辅助披露
+
+项目发起账号为[`dreamlee666`](https://github.com/dreamlee666)，站内贡献者身份为`jiaozhu7`。项目使用AI辅助文献整理、结构推演、文字起草、代码实现与测试；机器输出本身不作为学术证据或法律结论。来源核验、研究判断、专业审查和最终发布责任必须由人承担。

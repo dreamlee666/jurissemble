@@ -3,7 +3,7 @@ export const legalDisclaimer = "结构示例，不构成针对具体事项的法
 export const founder = {
   username: "jiaozhu7",
   role: "创始贡献者 · Maintainer",
-  bio: "建设工程法律工程仓库的创建者。建设工程只是平台上的第一个账号仓库，不是平台的内容边界。",
+  bio: "Jurissemble发起人与首个示范仓库维护者，负责研究问题定义、产品架构、模块规范和原型迭代。建设工程只是平台上的第一个账号仓库，不是平台的内容边界。",
 };
 
 export const repositoryIdentity = {

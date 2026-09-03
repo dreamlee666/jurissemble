@@ -5,6 +5,9 @@ type: software
 version: 0.1.0
 date-released: 2026-09-03
 authors:
-  - family-names: "Jurissemble Contributors"
+  - family-names: "dreamlee666"
+    alias: "dreamlee666"
+    website: "https://github.com/dreamlee666"
 license: Apache-2.0
 repository-code: "https://github.com/dreamlee666/jurissemble"
+url: "https://jurissemble.jiaozhu7.chatgpt.site"

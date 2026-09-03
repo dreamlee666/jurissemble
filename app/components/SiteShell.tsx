@@ -6,7 +6,7 @@ export function SiteHeader() {
     <header className="site-header shell-header">
       <Link className="brand" href="/" aria-label="Jurissemble 律构集首页"><span className="brand-mark">JS</span><span>Jurissemble · 律构集 <small>OPEN LEGAL MODULE NETWORK</small></span></Link>
       <nav aria-label="主导航">
-        <Link href="/explore">发现模块</Link><Link href="/repositories">仓库</Link><Link href="/projects">项目</Link><Link href="/toolkit">本地工具</Link><Link href="/organizations">组织</Link><Link href="/docs">文档</Link>
+        <Link href="/explore">发现模块</Link><Link href="/repositories">仓库</Link><Link href="/projects">项目</Link><Link href="/toolkit">本地工具</Link><Link href="/docs">文档</Link><Link href="/dossier">项目档案</Link>
       </nav>
       <div className="header-actions"><Link className="header-profile" href="/jiaozhu7" aria-label="打开jiaozhu7个人主页">J7</Link><Link className="header-action" href="/new">＋ 发布模块</Link></div>
     </header>
@@ -17,7 +17,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div><Link className="brand footer-brand" href="/"><span className="brand-mark">JS</span><span>Jurissemble · 律构集 <small>OPEN LEGAL MODULE NETWORK</small></span></Link><p>让法律工作能力能够被定义、调用、派生、组合和共同维护。</p></div>
-      <div className="footer-links"><Link href="/explore">发现模块</Link><Link href="/repositories">仓库</Link><Link href="/projects">项目</Link><Link href="/toolkit">本地工具</Link><Link href="/new">发布模块</Link><Link href="/docs">文档</Link></div>
+      <div className="footer-links"><Link href="/explore">发现模块</Link><Link href="/repositories">仓库</Link><Link href="/projects">项目</Link><Link href="/toolkit">本地工具</Link><Link href="/docs">文档</Link><Link href="/dossier">项目档案</Link></div>
       <p className="footer-note">当前为M0产品原型。示例模块是结构和交互样本，不构成针对具体事项的法律意见；请勿在公共区提交客户身份、事实、证据、策略或其他受保护资料。</p>
     </footer>
   );

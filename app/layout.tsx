@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ??
-      "http://localhost:4321",
+      "https://jurissemble.jiaozhu7.chatgpt.site",
   ),
   title: "Jurissemble · 律构集 — 开放法律模块网络",
   description: "发布、调用、精确引用、派生、组合和共同维护有边界的法律能力模块。",

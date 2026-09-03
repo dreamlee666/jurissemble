@@ -96,8 +96,17 @@ test("governance labels private infrastructure as proposed rather than active", 
   assert.match(html, /EVIDENCE VAULT · NOT BUILT/);
 });
 
+test("project dossier gives evaluators an auditable and honest review path", async () => {
+  const html = await (await render("/dossier")).text();
+  const text = visibleText(html);
+  for (const item of ["PROJECT DOSSIER", "五分钟判断它是否成立", "Fact Proposition", "Legal Proposition", "Executable Specification", "Lawyer Decision Control Plane", "AUDITABLE OUTPUTS", "REPRODUCE, DO NOT JUST BELIEVE", "ENGLISH ABSTRACT", "FOUNDING CONTRIBUTOR", "AI-ASSISTED WORK", "KNOWN LIMITATIONS"]) assert.match(text, new RegExp(item));
+  assert.match(text, /不证明法律内容正确/);
+  assert.match(text, /尚未完成访谈、对照实验和跨领域复制/);
+  assert.doesNotMatch(html, /已有真实用户|行业领先|权威认证/);
+});
+
 test("primary product and retained research routes render", async () => {
-  const routes = ["/", "/explore", "/modules/open-practice/source-currentness", "/modules/open-practice/case-law-research", "/modules/open-practice/litigation-strategy-frame", "/repositories", "/repositories/construction-legal-engineering", "/projects", "/projects/qianhai-notice-playbook", "/toolkit", "/organizations", "/docs", "/new", "/jiaozhu7", "/research-lab", "/research", "/evidence", "/studies", "/artifacts", "/participate", "/governance"];
+  const routes = ["/", "/explore", "/modules/open-practice/source-currentness", "/modules/open-practice/case-law-research", "/modules/open-practice/litigation-strategy-frame", "/repositories", "/repositories/construction-legal-engineering", "/projects", "/projects/qianhai-notice-playbook", "/toolkit", "/organizations", "/docs", "/new", "/jiaozhu7", "/dossier", "/research-lab", "/research", "/evidence", "/studies", "/artifacts", "/participate", "/governance"];
   for (const route of routes) assert.equal((await render(route)).status, 200, `${route} should render`);
 });
 
