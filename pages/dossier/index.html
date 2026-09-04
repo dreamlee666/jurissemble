@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>项目档案 · Jurissemble · 律构集</title>
+  <meta name="description" content="供学术、专业与产品评估使用的Jurissemble公开项目档案。">
+  <meta name="theme-color" content="#17211d">
+  <meta property="og:title" content="Jurissemble Project Dossier · 律构集项目档案">
+  <meta property="og:description" content="一个从法律工程研究问题走向可检查产品、开放规范与可复现实验的公共项目。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dreamlee666.github.io/jurissemble/dossier/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/dreamlee666/jurissemble/main/public/og.png">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="prototype-bar"><span>PROJECT DOSSIER · PUBLIC REVIEW</span><span>M0研究原型 · 2026-09-05</span></div>
+  <header class="site-header">
+    <a class="brand" href="../"><span class="brand-mark">JS</span><span>Jurissemble · 律构集<small>OPEN LEGAL MODULE NETWORK</small></span></a>
+    <nav aria-label="主导航"><a href="../">首页</a><a href="#architecture">研究架构</a><a href="#evidence">公开证据</a><a href="../module/">模块样本</a><a href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+    <a class="header-action" href="https://github.com/dreamlee666/jurissemble/issues/new?template=peer-feedback.yml" target="_blank" rel="noreferrer">提交反馈</a>
+  </header>
+
+  <main id="main">
+    <section class="inner-hero dossier-hero">
+      <div>
+        <p class="eyebrow"><span></span> RESEARCH × PRODUCT × OPEN SOURCE</p>
+        <h1>把一个法律工程问题，<em>做成可以被检查的公共系统。</em></h1>
+        <p class="hero-lead">Jurissemble不是个人宣传页，也不是已经成立的行业标准。它公开检验一个问题：法律工作能否在保留事实来源、法域时点、专业判断和责任边界的前提下，被版本化、复用、组合与共同维护。</p>
+        <div class="hero-actions"><a class="button primary" href="../module/">检查模块样本 <span>→</span></a><a class="button secondary" href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">查看公开代码 ↗</a></div>
+        <p class="audience">FOR · 研究生/博士项目评估 · 法律科技与知识工程岗位 · 开源协作者</p>
+      </div>
+      <aside class="review-card">
+        <div class="review-card-head"><div><small>REVIEW PATH</small><h2>五分钟判断它是否成立</h2></div><span class="badge amber">M0</span></div>
+        <ol>
+          <li><span>01</span><div><h3>理解对象</h3><p>先区分仓库、Legal Module、Release、Project与Matter。</p></div><a href="../#modules">→</a></li>
+          <li><span>02</span><div><h3>检查样本</h3><p>用途、接口、来源、版本、边界和复核是否同时存在。</p></div><a href="../module/">→</a></li>
+          <li><span>03</span><div><h3>复现结构</h3><p>从公开仓库运行构建、页面测试和Schema校验。</p></div><a href="https://github.com/dreamlee666/jurissemble#本地运行" target="_blank" rel="noreferrer">↗</a></li>
+          <li><span>04</span><div><h3>提出反例</h3><p>指出不能复用、无法追溯或必须由律师重新判断的地方。</p></div><a href="https://github.com/dreamlee666/jurissemble/issues/new?template=peer-feedback.yml" target="_blank" rel="noreferrer">↗</a></li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="verdict-strip">
+      <article><small>RESEARCH QUESTION</small><strong>法律经验怎样成为可复用、可争议、可维护的公共能力？</strong></article>
+      <article><small>SYSTEM CONTRIBUTION</small><strong>Legal Module + FLC+D + Trust Envelope + Local Compiler</strong></article>
+      <article><small>PUBLIC EVIDENCE</small><strong>网站、Schema、样本、测试、治理与版本记录</strong></article>
+      <article><small>CURRENT CLAIM</small><strong>可检验的研究原型，不是已经证实的标准或执业系统</strong></article>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-head"><div><p class="section-kicker">CORE RESEARCH ARCHITECTURE</p><h2>不是“把法律写成代码”，而是控制每一次转换</h2></div><p>事实、法律与可执行规格分层；律师决策贯穿其中。自动化程度不是首要问题，转换是否保留来源、异议、不确定性和责任才是。</p></div>
+      <div class="layer-stack">
+        <article><span>F</span><div><small>FACT PROPOSITION</small><h3>事实命题层</h3><p>把材料转为带来源、时点、置信度和争议状态的事实命题；事实不会自动变成法律结论。</p></div><b>↓ controlled transformation</b></article>
+        <article><span>L</span><div><small>LEGAL PROPOSITION</small><h3>法律命题层</h3><p>连接规范、案例、解释、反方观点和适用条件；保留权威层级与法域时间。</p></div><b>↓ controlled transformation</b></article>
+        <article><span>C</span><div><small>EXECUTABLE SPECIFICATION</small><h3>可执行规格层</h3><p>把输入、输出、依赖、停止条件、测试和版本写成机器可读接口；结构通过不等于法律正确。</p></div><b>↓ controlled transformation</b></article>
+        <article class="decision"><span>D</span><div><small>LAWYER DECISION CONTROL PLANE</small><h3>律师决策控制面</h3><p>决定目标、相关性、风险容忍、升级、策略选择、复核范围与最终签发；它贯穿前三层而非被代码取代。</p></div><b>cross-layer control</b></article>
+      </div>
+    </section>
+
+    <section class="section soft-section">
+      <div class="section-head"><div><p class="section-kicker">WORKING CONTRIBUTIONS</p><h2>目前真正值得评估的四项设计</h2></div><p>这些是已部分实现、仍接受反证的系统主张。原创性与外部有效性需要通过先行研究、同行评议和真实场景测试继续界定。</p></div>
+      <div class="contribution-grid">
+        <article><span>01</span><code>NATIVE OBJECT</code><h3>Legal Module作为原生复用对象</h3><p>仓库是协作容器；真正被调用的是有用途、非用途、接口、来源、版本、权利与复核边界的能力模块。</p></article>
+        <article><span>02</span><code>FLC+D</code><h3>事实、法律、规格与决策分层</h3><p>避免从原始事实直接跳到自动结论，让每一次转换都可检查、质疑、复核和回退。</p></article>
+        <article><span>03</span><code>TRUST ENVELOPE</code><h3>可信度拆成可审计状态</h3><p>结构、来源、同行评审、实践使用、法域时点和事项适用性分别展示，不制造笼统的绿色勾。</p></article>
+        <article><span>04</span><code>LOCAL COMPILER</code><h3>案件与公共库之间的编译层</h3><p>完整事项默认留在本地；只有通过保密、权利、去识别、来源和责任律师闸门的能力候选才可能公开。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="evidence">
+      <div class="section-head"><div><p class="section-kicker">AUDITABLE OUTPUTS</p><h2>主张旁边必须放证据和边界</h2></div><p>“已实现”“结构已验证”“专业已评审”“真实场景可用”是不同状态，不能合并成一个结论。</p></div>
+      <div class="evidence-table">
+        <div class="evidence-head"><span>公开构件</span><span>状态</span><span>能证明 / 不能证明</span><span>核验</span></div>
+        <article><strong>静态公开展示版与完整产品原型</strong><span class="badge green">IMPLEMENTED</span><p>证明核心信息架构和交互模型已经落成；不证明存在真实社区采用。</p><a href="../">打开 →</a></article>
+        <article><strong>Legal Module JSON Schema与三个合成样本</strong><span class="badge green">STRUCTURE VALID</span><p>证明高、中、低模块化对象可以机器校验；不证明法律内容正确。</p><a href="https://github.com/dreamlee666/jurissemble/tree/main/spec" target="_blank" rel="noreferrer">检查 ↗</a></article>
+        <article><strong>本地事项整理脚本与安全工作流</strong><span class="badge amber">LOCAL ONLY</span><p>证明私有事项与公共候选可以双轨组织；当前不自动判断保密或完成脱敏。</p><a href="https://github.com/dreamlee666/jurissemble/tree/main/tooling/legal-module-intake" target="_blank" rel="noreferrer">检查 ↗</a></article>
+        <article><strong>开放代码、许可、治理与贡献规则</strong><span class="badge green">PUBLIC</span><p>证明项目可以复现、引用和接受外部审查；不代表已经形成治理共同体。</p><a href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">仓库 ↗</a></article>
+      </div>
+    </section>
+
+    <section class="reproduce-section">
+      <div><p class="section-kicker">REPRODUCE, DO NOT JUST BELIEVE</p><h2>任何评估者都可以独立运行</h2><p>公开仓库包含产品原型、Legal Module Schema、合成样本、校验器、测试和治理文件。</p><a class="button light" href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">打开GitHub仓库 ↗</a></div>
+      <pre aria-label="项目复现命令"><code>git clone https://github.com/dreamlee666/jurissemble.git
+cd jurissemble
+pnpm install
+pnpm test
+pnpm spec:validate</code></pre>
+    </section>
+
+    <section class="section english-section">
+      <div class="english-label"><span>EN</span><small>ENGLISH ABSTRACT</small></div>
+      <div><h2>Jurissemble is an open legal engineering experiment, not a legal-answer bot.</h2><p>It investigates whether legal work can be represented as versioned and composable capability modules without collapsing facts, authority, professional judgment, provenance and accountability into a single opaque output. The prototype combines a GitHub-like collaboration model with a proposed Fact–Law–Code architecture and a lawyer decision control plane.</p><p>Its present contribution is a falsifiable system design supported by working software, a machine-readable schema, synthetic examples, local intake safeguards and explicit governance boundaries. It does not yet claim doctrinal correctness, empirical effectiveness, community adoption or autonomous legal practice.</p></div>
+    </section>
+
+    <section class="section soft-section">
+      <div class="section-head"><div><p class="section-kicker">EVALUATION PROTOCOL</p><h2>用四个问题评价，而不是看概念是否宏大</h2></div><p>如果系统不能让第三方更准确地理解边界、发现缺口并复现判断链，它就没有完成目标。</p></div>
+      <div class="question-grid"><article><span>01</span><h3>可理解吗？</h3><p>第三方能否仅凭模块说明判断用途、非用途和所需输入？</p></article><article><span>02</span><h3>可追溯吗？</h3><p>关键事实、法律命题和版本能否回到来源、时点与修改记录？</p></article><article><span>03</span><h3>可组合吗？</h3><p>上下游连接能否暴露类型、法域、权限、时点和责任冲突？</p></article><article><span>04</span><h3>可否证吗？</h3><p>失败、反例和不确定性是否会改变Schema、边界或研究主张？</p></article></div>
+    </section>
+
+    <section class="section limits-section"><div class="section-head"><div><p class="section-kicker">KNOWN LIMITATIONS</p><h2>当前最重要的不是包装，而是缺口</h2></div><span class="badge amber">RESEARCH PROTOTYPE</span></div><ul><li>目前没有真实社区账号、活跃用户、机构背书或采用成效数据。</li><li>示例只使用合成、公开或去客户化内容，不构成针对具体事项的法律意见。</li><li>Schema校验只验证结构，不验证法律结论、来源充分性或事项适用性。</li><li>FLC+D与Legal Modularizability仍是工作理论，尚未完成访谈、对照实验和跨领域复制。</li><li>品牌、域名和商业使用仍需另行完成商标、合规与安全审查。</li></ul></section>
+
+    <section class="final-cta"><p class="section-kicker">INSPECT · CHALLENGE · CONTRIBUTE</p><h2>从一个模块开始检查，而不是先接受这套设想。</h2><p>尤其欢迎指出：哪些边界不能标准化、哪些决策不能外包、哪些结构会让律师误判。</p><div><a class="button primary" href="../module/">检查模块样本 <span>→</span></a><a class="button secondary" href="https://github.com/dreamlee666/jurissemble/issues/new?template=peer-feedback.yml" target="_blank" rel="noreferrer">提出问题或反例 ↗</a></div></section>
+  </main>
+
+  <footer class="site-footer"><div><a class="brand" href="../"><span class="brand-mark">JS</span><span>Jurissemble · 律构集<small>PUBLIC REVIEW EDITION</small></span></a><p>让法律工作能力能够被定义、调用、派生、组合和共同维护。</p></div><div class="footer-links"><a href="../">首页</a><a href="../module/">模块样本</a><a href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">源代码</a></div><p class="footer-note">当前为M0研究原型。AI辅助了资料整理、结构推演、文字起草、代码实现与测试；来源核验、研究判断、专业审查和最终发布责任由人承担。</p></footer>
+</body>
+</html>
+

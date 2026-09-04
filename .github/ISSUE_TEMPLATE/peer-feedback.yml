@@ -1,0 +1,121 @@
+name: 同学 / 同行试用反馈
+description: 用约五分钟帮助我们判断Jurissemble是否可理解、可追溯和可复用
+title: "[反馈] "
+labels: ["peer-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢参与公开评审。请只讨论公开产品、结构与合成样本。
+
+        **不要提交客户姓名、案件事实、合同、证据、诉讼策略、律师意见、通信、执业信息或任何受保密义务/个人信息保护约束的内容。** 如发现疑似泄密或安全问题，请不要创建公开Issue，改按仓库中的 `SECURITY.md` 处理。
+
+  - type: dropdown
+    id: perspective
+    attributes:
+      label: 你的观察视角
+      description: 仅用于理解反馈背景，不需要提供单位或真实身份。
+      options:
+        - 法律学生 / 研究者
+        - 律师 / 法务
+        - 法律科技 / 产品 / 工程
+        - 其他观察者
+    validations:
+      required: true
+
+  - type: textarea
+    id: first_impression
+    attributes:
+      label: 看完首页后，你认为这个产品是做什么的？
+      description: 请用自己的话回答。错误理解本身就是最有价值的反馈。
+      placeholder: 我理解它是……
+    validations:
+      required: true
+
+  - type: textarea
+    id: legal_module
+    attributes:
+      label: 你怎样理解Legal Module？
+      description: 它与普通文章、模板、知识库条目或AI答案有什么区别？
+      placeholder: Legal Module对我来说是……
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: review_path
+    attributes:
+      label: 你实际检查了哪些内容？
+      options:
+        - label: 公开首页
+        - label: 项目档案
+        - label: 类案检索模块样本
+        - label: GitHub中的Schema或JSON样本
+        - label: 许可、贡献或安全边界
+
+  - type: textarea
+    id: confusing
+    attributes:
+      label: 最难理解或最容易误解的地方
+      placeholder: 我在……这里停住了，因为……
+    validations:
+      required: true
+
+  - type: dropdown
+    id: flcd
+    attributes:
+      label: 事实—法律—规格与律师决策的关系是否清楚？
+      options:
+        - 清楚，可以向别人复述
+        - 大致清楚，但仍有跳跃
+        - 不清楚
+    validations:
+      required: true
+
+  - type: textarea
+    id: reuse_boundary
+    attributes:
+      label: 如果你要复用这个模块，还缺少什么？
+      description: 例如输入、来源、法域、版本、停止条件、责任节点、复核记录或调用方式。
+      placeholder: 在真实工作中，我还必须知道……
+    validations:
+      required: true
+
+  - type: dropdown
+    id: local_tool
+    attributes:
+      label: 你认为是否需要本地工具 / Office连接？
+      options:
+        - 需要，本地整理案件材料是复用的前提
+        - 有帮助，但可以晚于社区网站
+        - 暂时不需要，先验证模块协作
+        - 无法判断
+    validations:
+      required: true
+
+  - type: dropdown
+    id: willingness
+    attributes:
+      label: 在边界与安全条件满足时，你愿意尝试哪种行为？
+      options:
+        - 在项目中引用一个模块
+        - 提出问题、反例或改进建议
+        - 贡献一个去客户化模块
+        - 只愿意继续观察
+    validations:
+      required: true
+
+  - type: textarea
+    id: next_change
+    attributes:
+      label: 如果下一版只能改一件事，应该改什么？
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: privacy_confirm
+    attributes:
+      label: 公开与保密确认
+      options:
+        - label: 我确认本反馈不包含客户资料、未公开事项材料、个人敏感信息或未经许可的第三方内容。
+          required: true
+

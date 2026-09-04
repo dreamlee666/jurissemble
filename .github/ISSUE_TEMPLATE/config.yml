@@ -1,5 +1,6 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Private security report
+  - name: 安全或疑似泄密问题
     url: https://github.com/dreamlee666/jurissemble/security/advisories/new
-    about: Report credentials, confidentiality, privacy or security problems privately.
+    about: 不要公开披露客户资料、凭据或安全漏洞，请通过Private security report非公开报告。
+

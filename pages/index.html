@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jurissemble · 律构集 — 开放法律模块网络</title>
+  <meta name="description" content="发布、精确引用、派生、组合和共同维护有边界的法律能力模块。">
+  <meta name="theme-color" content="#17211d">
+  <meta property="og:title" content="Jurissemble · 律构集 — 开放法律模块网络">
+  <meta property="og:description" content="一个可检查、可复现、可提出反例的开放法律工程原型。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dreamlee666.github.io/jurissemble/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/dreamlee666/jurissemble/main/public/og.png">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="prototype-bar"><span>GITHUB PAGES · PUBLIC REVIEW EDITION</span><span>M0研究原型 · 示例不构成法律意见</span></div>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Jurissemble首页"><span class="brand-mark">JS</span><span>Jurissemble · 律构集<small>OPEN LEGAL MODULE NETWORK</small></span></a>
+    <nav aria-label="主导航"><a href="#modules">模块</a><a href="#architecture">架构</a><a href="./module/">样本</a><a href="./dossier/">项目档案</a><a href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+    <a class="header-action" href="https://github.com/dreamlee666/jurissemble/issues/new?template=peer-feedback.yml" target="_blank" rel="noreferrer">提交反馈</a>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> OPEN LEGAL MODULE NETWORK</p>
+        <h1>法律经验，不止被保存；<em>而是被调用、质疑和共同维护。</em></h1>
+        <p class="hero-lead">Jurissemble探索一种面向全部法律领域的开放协作方式：律师发布有用途、有接口、有来源、有版本和复核边界的Legal Module，其他人可以精确引用、加入项目、派生和组合。</p>
+        <div class="hero-actions"><a class="button primary" href="./dossier/">五分钟了解项目 <span>→</span></a><a class="button secondary" href="./module/">检查模块样本</a></div>
+        <div class="trust-row"><span>公开方法，隔离事项</span><span>锁定版本，保留谱系</span><span>复核范围分别展示</span></div>
+      </div>
+      <a class="module-preview" href="./module/" aria-label="查看类案检索模块样本">
+        <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>open-practice / case-law-research</span><b>LEGAL MODULE</b></div>
+        <div class="preview-body">
+          <div class="package-title"><span>LM</span><div><small>MEDIUM MODULARITY · RESEARCH PROTOTYPE</small><strong>类案检索与裁判分歧识别</strong><code>open-practice/case-law-research@0.1.0</code></div></div>
+          <div class="call-command"><span>ADD</span><code>legal add open-practice/case-law-research@0.1.0</code></div>
+          <div class="io-grid"><article><small>INPUTS</small><b>legal_issue</b><b>jurisdiction_scope</b><b>as_of_date</b></article><i>→</i><article><small>OUTPUTS</small><b>search_log</b><b>case_matrix</b><b>divergence_map</b></article></div>
+        </div>
+        <div class="commit-bar"><span></span><b>SCHEMA VALID</b><small>专业评审与事项适用性尚未验证</small></div>
+      </a>
+    </section>
+
+    <section class="principle-strip"><small>THE NATIVE OBJECT</small><strong>仓库承载协作；真正被复用的是有边界、有版本的法律能力。</strong></section>
+
+    <section class="section proof-section">
+      <div class="section-head"><div><p class="section-kicker">WHAT CAN BE REVIEWED NOW</p><h2>先检查证据，再判断愿景</h2></div><p>这是公开展示版，不制造用户量、法律正确性或行业背书。每一项主张都应能回到一个可以打开、运行或质疑的构件。</p></div>
+      <div class="proof-grid">
+        <article><code>PRODUCT</code><span>01</span><h3>可浏览的产品模型</h3><p>展示模块发现、精确引用、派生、组合和范围化评审怎样形成社区协作。</p><a href="#modules">查看产品对象 →</a></article>
+        <article><code>SPECIFICATION</code><span>02</span><h3>可校验的开放Schema</h3><p>三个不同模块化程度的合成样本通过机器结构校验，但不因此宣称法律正确。</p><a href="https://github.com/dreamlee666/jurissemble/tree/main/spec" target="_blank" rel="noreferrer">检查公开规范 ↗</a></article>
+        <article class="accent"><code>DOSSIER</code><span>03</span><h3>可否证的研究档案</h3><p>研究问题、FLC+D架构、实现状态、复现方法、作者责任和未完成验证集中说明。</p><a href="./dossier/">打开项目档案 →</a></article>
+      </div>
+    </section>
+
+    <section class="section architecture-section" id="architecture">
+      <div class="section-head"><div><p class="section-kicker">FACT · LAW · CODE + DECISION</p><h2>控制事实、文字和决定之间的转换</h2></div><p>系统不让事实直接跳到决定，也不让法律文字假装自动产生答案。每一层都保留来源、异议、不确定性和责任。</p></div>
+      <div class="layer-stack">
+        <article><span>F</span><div><small>FACT PROPOSITION</small><h3>事实命题层</h3><p>谁、何时、做了什么；来源在哪里；是否被争议；还缺什么证据。</p></div><b>来源锚点</b></article>
+        <article><span>L</span><div><small>LEGAL PROPOSITION</small><h3>法律命题层</h3><p>条件、后果、例外、权威层级、法域、截止时点和相反解释。</p></div><b>要件映射</b></article>
+        <article><span>C</span><div><small>EXECUTABLE SPECIFICATION</small><h3>可执行规格层</h3><p>输入、输出、依赖、步骤、停止条件、测试和不可变版本。</p></div><b>结构校验</b></article>
+        <article class="decision"><span>D</span><div><small>LAWYER DECISION CONTROL PLANE</small><h3>律师决策控制面</h3><p>目标、风险容忍、策略选择、升级、复核与最终签发贯穿前三层。</p></div><b>人承担责任</b></article>
+      </div>
+    </section>
+
+    <section class="section modules-section" id="modules">
+      <div class="section-head"><div><p class="section-kicker">THREE MODULARITY LEVELS</p><h2>不是所有法律工作都能同样复用</h2></div><p>高模块化能力可以独立核验；中模块化能力需要人工界定；低模块化工作只能提供决策框架。</p></div>
+      <div class="module-grid">
+        <article><div><code>SOURCE_CHECK</code><span class="badge green">HIGH</span></div><h3>法源现行性</h3><p>核验一个已知法源在指定法域和时点的状态、沿革和替代关系。</p><footer><span>结构原型</span><span>v0.1.0</span></footer></article>
+        <a href="./module/"><div><code>RESEARCH_ANALYSIS</code><span class="badge amber">MEDIUM</span></div><h3>类案检索与裁判分歧识别</h3><p>从法律问题和范围约束形成检索记录、案例矩阵和分歧图。</p><footer><span>可检查样本</span><span>v0.1.0</span></footer></a>
+        <article><div><code>ARGUMENT_PATTERN</code><span class="badge">LOW</span></div><h3>诉讼策略决策框架</h3><p>只组织目标、方案和风险；具体策略必须由责任律师决定。</p><footer><span>边界反例</span><span>v0.1.0</span></footer></article>
+      </div>
+    </section>
+
+    <section class="public-private">
+      <article><p class="section-kicker">PUBLIC MODULE</p><h2>社区公开</h2><p>用途、接口、空白方法、公开来源、测试、版本、Proposal和范围化评审。</p><span class="badge green">SHAREABLE</span></article>
+      <i>＋</i>
+      <article><p class="section-kicker">PRIVATE MATTER</p><h2>事项私有</h2><p>客户身份、合同、事实、证据、沟通、策略、决定和运行记录。</p><span class="badge amber">LOCAL / CONTROLLED</span></article>
+    </section>
+
+    <section class="section loop-section">
+      <div class="section-head"><div><p class="section-kicker">USE CREATES COMMUNITY</p><h2>围绕真实复用形成交流</h2></div><p>社区不是资料堆积，而是围绕版本、问题、反例和改进形成可追踪的协作闭环。</p></div>
+      <ol class="loop"><li><span>01</span><strong>Publish</strong><small>发布边界与版本</small></li><li><span>02</span><strong>Reuse</strong><small>加入私有项目</small></li><li><span>03</span><strong>Find gaps</strong><small>发现缺口与冲突</small></li><li><span>04</span><strong>Propose</strong><small>提出可审查修改</small></li><li><span>05</span><strong>Release</strong><small>评审并发布新版</small></li></ol>
+    </section>
+
+    <section class="final-cta"><p class="section-kicker">PUBLIC PEER REVIEW</p><h2>请从一个模块开始检查，而不是先接受这个概念。</h2><p>告诉我们哪里难懂、哪里不能复用、哪里遗漏了律师必须作出的判断。</p><div><a class="button primary" href="https://github.com/dreamlee666/jurissemble/issues/new?template=peer-feedback.yml" target="_blank" rel="noreferrer">提交同学反馈 <span>↗</span></a><a class="button secondary" href="./dossier/">阅读项目档案</a></div></section>
+  </main>
+
+  <footer class="site-footer"><div><a class="brand" href="./"><span class="brand-mark">JS</span><span>Jurissemble · 律构集<small>PUBLIC REVIEW EDITION</small></span></a><p>让法律工作能力能够被定义、调用、派生、组合和共同维护。</p></div><div class="footer-links"><a href="./dossier/">项目档案</a><a href="./module/">模块样本</a><a href="https://github.com/dreamlee666/jurissemble" target="_blank" rel="noreferrer">源代码</a></div><p class="footer-note">当前为M0研究原型。示例内容不构成法律意见；禁止在公开反馈中提交客户身份、事实、证据、策略或其他受保护资料。</p></footer>
+</body>
+</html>
+
