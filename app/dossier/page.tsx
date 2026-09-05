@@ -129,7 +129,7 @@ pnpm spec:validate`}</code></pre>
     </section>
 
     <section className="content-section dossier-accountability-section">
-      <div className="dossier-accountability-card"><div><p className="section-kicker">AUTHORSHIP & ACCOUNTABILITY</p><h2>贡献可以署名，责任不能外包</h2></div><div className="dossier-accountability-columns"><article><code>FOUNDING CONTRIBUTOR</code><p><strong>dreamlee666 / jiaozhu7</strong>提出研究问题，确定产品边界、对象模型和公开路线，并对发布内容承担维护责任。当前只陈述可从网站、代码与版本记录复核的贡献，不主张未验证的专业资历或行业影响。</p></article><article><code>AI-ASSISTED WORK</code><p>项目使用AI辅助文献整理、结构推演、文字起草、代码实现与测试。机器输出本身不作为学术证据或法律结论；来源核验、研究判断、专业审查和最终发布必须由人负责。</p></article></div></div>
+      <div className="dossier-accountability-card"><div><p className="section-kicker">AUTHORSHIP & ACCOUNTABILITY</p><h2>生成过程公开，责任不能外包</h2></div><div className="dossier-accountability-columns"><article><code>HUMAN INITIATOR</code><p><strong>dreamlee666 / jiaozhu7</strong>提出研究问题与原始构想，提供材料、连续指令与纠偏，确定产品边界、对象模型和公开路线，并对内容取舍与发布承担最终责任。</p></article><article><code>AI-ASSISTED WORK</code><p>截至当前版本，仓库中的代码、规范、页面、测试和整理性文字均由OpenAI Codex / ChatGPT生成。机器输出本身不作为学术证据或法律结论；AI不具有作者资格、律师执业资格或责任能力。</p></article></div></div>
     </section>
 
     <section className="content-section dossier-limits-section"><div className="section-head"><div><p className="section-kicker">KNOWN LIMITATIONS · 2026-09-03</p><h2>当前最重要的不是包装，而是缺口</h2></div><StatusBadge tone="amber">RESEARCH PROTOTYPE</StatusBadge></div><ul>{limits.map((item) => <li key={item}>{item}</li>)}</ul></section>
@@ -137,3 +137,4 @@ pnpm spec:validate`}</code></pre>
     <section className="final-cta dossier-final-cta"><p className="section-kicker">INSPECT · CHALLENGE · CONTRIBUTE</p><h2>从一个模块开始检查这套设想，而不是先接受它。</h2><div><Link className="button primary" href="/modules/open-practice/case-law-research">检查模块样本 <span>→</span></Link><a className="button ghost" href={`${repositoryUrl}/issues`} target="_blank" rel="noreferrer">提出问题或反例</a></div></section>
   </PageShell>;
 }
+

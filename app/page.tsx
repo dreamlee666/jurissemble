@@ -19,12 +19,13 @@ const collaborationLoop = [
 
 export default function Home() {
   return <main>
-    <div className="prototype-bar"><span>M0 PRODUCT PROTOTYPE</span> · PUBLIC MODULES / PRIVATE MATTERS · 示例内容不构成法律意见</div>
+    <div className="prototype-bar"><span>AI-GENERATED IMPLEMENTATION</span> · 代码、规范、页面、测试与整理性文字均由AI在发起人的指令与纠偏下生成</div>
     <SiteHeader />
 
     <section className="hero module-home-hero">
       <div className="hero-copy">
         <p className="eyebrow"><span /> OPEN LEGAL MODULE NETWORK</p>
+        <p className="ai-disclosure-note"><strong>AI生成披露</strong> 本公开原型由OpenAI Codex / ChatGPT根据发起人dreamlee666的构想、资料、连续指令与纠偏生成；人类发起人决定方向与发布，AI不承担法律或学术责任。</p>
         <h1>找到一种法律能力，<br /><em>加入你的项目。</em></h1>
         <p className="hero-lead">律师发布的不是客户资料，也不只是结果文件，而是有用途、有接口、有来源、有版本和复核边界的法律模块。其他人可以精确引用、加入项目、派生和共同改进。</p>
         <form className="home-search" action="/explore" method="get"><label className="sr-only" htmlFor="home-search">搜索法律模块</label><span>⌕</span><input id="home-search" name="q" placeholder="搜索能力、法域、业务领域、维护者或输入输出" /><button type="submit">搜索模块</button></form>
@@ -71,3 +72,4 @@ export default function Home() {
     <SiteFooter />
   </main>;
 }
+

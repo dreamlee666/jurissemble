@@ -25,8 +25,11 @@ test("home presents a Legal Module community product", async () => {
 
 test("publishes Legal Module metadata without AI positioning", async () => {
   const html = await (await render()).text();
+  const text = visibleText(html);
   assert.match(html, /Jurissemble · 律构集/);
   assert.match(html, /精确引用、派生、组合/);
+  assert.match(text, /AI-GENERATED IMPLEMENTATION/);
+  assert.match(text, /代码、规范、页面、测试与整理性文字均由AI/);
   assert.doesNotMatch(html, /AI机器人|合同文档库|可调用的法律工作流网络/);
 });
 
@@ -99,7 +102,7 @@ test("governance labels private infrastructure as proposed rather than active", 
 test("project dossier gives evaluators an auditable and honest review path", async () => {
   const html = await (await render("/dossier")).text();
   const text = visibleText(html);
-  for (const item of ["PROJECT DOSSIER", "五分钟判断它是否成立", "Fact Proposition", "Legal Proposition", "Executable Specification", "Lawyer Decision Control Plane", "AUDITABLE OUTPUTS", "REPRODUCE, DO NOT JUST BELIEVE", "ENGLISH ABSTRACT", "FOUNDING CONTRIBUTOR", "AI-ASSISTED WORK", "KNOWN LIMITATIONS"]) assert.match(text, new RegExp(item));
+  for (const item of ["PROJECT DOSSIER", "五分钟判断它是否成立", "Fact Proposition", "Legal Proposition", "Executable Specification", "Lawyer Decision Control Plane", "AUDITABLE OUTPUTS", "REPRODUCE, DO NOT JUST BELIEVE", "ENGLISH ABSTRACT", "HUMAN INITIATOR", "AI-ASSISTED WORK", "KNOWN LIMITATIONS"]) assert.match(text, new RegExp(item));
   assert.match(text, /不证明法律内容正确/);
   assert.match(text, /尚未完成访谈、对照实验和跨领域复制/);
   assert.doesNotMatch(html, /已有真实用户|行业领先|权威认证/);
@@ -122,3 +125,4 @@ test("founding repository remains visibly non-production", async () => {
   assert.match(repositoryHtml, /建设工程是一个账号的首个仓库/);
   assert.match(repositoryHtml, /0 VERIFIED/);
 });
+
